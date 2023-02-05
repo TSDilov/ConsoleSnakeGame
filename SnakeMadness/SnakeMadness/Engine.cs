@@ -13,7 +13,8 @@ namespace SnakeMadness
             if (snakeNewHead.Row < 0
                 || snakeNewHead.Col < 0
                 || snakeNewHead.Row >= Console.WindowHeight
-                || snakeNewHead.Col >= Console.WindowWidth)
+                || snakeNewHead.Col >= Console.WindowWidth
+                || snakeElements.Contains(snakeNewHead))
             {
                 Console.SetCursorPosition(0, 0);
                 Console.Clear();

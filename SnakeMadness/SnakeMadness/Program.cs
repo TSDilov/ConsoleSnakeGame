@@ -9,7 +9,8 @@ internal class Program
     {
         Console.BufferHeight = Console.WindowHeight;
         var directions = Helpers.Directions();
-        int direction = 0;
+        var direction = 0;
+        var sleepTime = 100;
         var foodPosition = Helpers.FoodPosition();
 
         var snakeElements = Helpers.StartUpSnake(numberOfStartElements);
@@ -22,7 +23,7 @@ internal class Program
             if (Console.KeyAvailable)
             {
                 var userInput = Console.ReadKey();
-                direction = Helpers.DirectionSetting(userInput);
+                direction = Helpers.DirectionSetting(userInput, direction);
             }
 
             var snakeHead = snakeElements.Last();
@@ -38,6 +39,7 @@ internal class Program
             if (snakeNewHead.Col == foodPosition.Col && snakeNewHead.Row == foodPosition.Row)
             {
                 foodPosition = Helpers.FoodPosition();
+                sleepTime--;
             }
             else
             {
@@ -48,7 +50,7 @@ internal class Program
             Printer.PrintingTheSnake(snakeElements);
             Printer.PrintingTheSnakeFood(foodPosition);
 
-            Thread.Sleep(100);
+            Thread.Sleep(sleepTime);
         }
     }
 }

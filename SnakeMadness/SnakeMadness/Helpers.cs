@@ -30,26 +30,30 @@ namespace SnakeMadness
             };
         }
 
-        public static int DirectionSetting(ConsoleKeyInfo userInput)
+        public static int DirectionSetting(ConsoleKeyInfo userInput, int direction)
         {
             if (userInput.Key == ConsoleKey.LeftArrow)
             {
-                return 1;
+                if (direction != 0) return 1;
+                else return 0;
             }
 
             if (userInput.Key == ConsoleKey.RightArrow)
             {
-                return 0;
+                if (direction != 1) return 0;
+                else return 1;
             }
 
             if (userInput.Key == ConsoleKey.UpArrow)
             {
-                return 3;
+                if (direction != 2) return 3;
+                else return 2;
             }
 
             if (userInput.Key == ConsoleKey.DownArrow)
             {
-                return 2;
+                if (direction != 3) return 2;
+                else return 3;
             }
 
             return -1;
