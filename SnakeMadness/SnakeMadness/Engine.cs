@@ -24,11 +24,7 @@ namespace SnakeMadness
         }
         private static bool EndOfGame(Position snakeNewHead, Queue<Position> snakeElements)
         {
-            if (snakeNewHead.Row < 0
-                || snakeNewHead.Col < 0
-                || snakeNewHead.Row >= Console.WindowHeight
-                || snakeNewHead.Col >= Console.WindowWidth
-                || snakeElements.Contains(snakeNewHead))
+            if (snakeElements.Contains(snakeNewHead))
             {
                 Console.SetCursorPosition(0, 0);
                 Console.Clear();
@@ -55,7 +51,13 @@ namespace SnakeMadness
                 var nextDirection = directions[direction];
                 var snakeNewHead = new Position(snakeHead.Row + nextDirection.Row,
                     snakeHead.Col + nextDirection.Col);
-                if (Engine.EndOfGame(snakeNewHead, snakeElements))
+               
+                if (snakeNewHead.Row < 0) snakeNewHead.Row = Console.WindowHeight - 1;
+                if (snakeNewHead.Col < 0) snakeNewHead.Col = Console.WindowWidth - 1;
+                if (snakeNewHead.Row >= Console.WindowWidth) snakeNewHead.Row = 0;
+                if (snakeNewHead.Col >= Console.WindowWidth) snakeNewHead.Col = 0;
+
+                if (EndOfGame(snakeNewHead, snakeElements))
                 {
                     return;
                 }
