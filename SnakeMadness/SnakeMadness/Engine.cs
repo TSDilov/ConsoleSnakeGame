@@ -64,7 +64,12 @@ namespace SnakeMadness
                 Printer.PrintingTheSnake(snakeElements);
                 if (snakeNewHead.Col == foodPosition.Col && snakeNewHead.Row == foodPosition.Row)
                 {
-                    this.foodPosition = Helpers.FoodPosition();
+                    do
+                    {
+                        this.foodPosition = Helpers.FoodPosition();
+                    } 
+                    while (snakeElements.Contains(foodPosition));
+
                     Printer.PrintingTheSnakeFood(foodPosition);
                     this.sleepTime--;
                 }
@@ -74,6 +79,7 @@ namespace SnakeMadness
                     Printer.PrintingEmptyElement(last);
                 }
 
+                Printer.PrintingTheSnakeFood(foodPosition);
                 this.sleepTime -= 0.01;
                 Thread.Sleep((int)this.sleepTime);
             }
