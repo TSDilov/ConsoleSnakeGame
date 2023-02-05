@@ -23,6 +23,12 @@ namespace SnakeMadness
             Console.Write("@");
         }
 
+        public static void PrintingEmptyElement(Position lastPosition)
+        {
+            Console.SetCursorPosition(lastPosition.Col, lastPosition.Row);
+            Console.Write(" ");
+        }
+
         public static void PrintingGameOver()
         {
             Console.WriteLine("Game over!");

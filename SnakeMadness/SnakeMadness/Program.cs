@@ -10,11 +10,11 @@ internal class Program
         Console.BufferHeight = Console.WindowHeight;
         var directions = Helpers.Directions();
         var direction = 0;
-        var sleepTime = 100;
+        double sleepTime = 100;
         var foodPosition = Helpers.FoodPosition();
 
         var snakeElements = Helpers.StartUpSnake(numberOfStartElements);
-
+        Printer.PrintingTheSnakeFood(foodPosition);
         Printer.PrintingTheSnake(snakeElements);
 
         while (true)
@@ -36,21 +36,24 @@ internal class Program
             }
 
             snakeElements.Enqueue(snakeNewHead);
+            Printer.PrintingTheSnake(snakeElements);
             if (snakeNewHead.Col == foodPosition.Col && snakeNewHead.Row == foodPosition.Row)
             {
                 foodPosition = Helpers.FoodPosition();
+                Printer.PrintingTheSnakeFood(foodPosition);
                 sleepTime--;
             }
             else
             {
-                snakeElements.Dequeue();
+                var last = snakeElements.Dequeue();
+                Printer.PrintingEmptyElement(last);
             }
 
-            Console.Clear();
-            Printer.PrintingTheSnake(snakeElements);
-            Printer.PrintingTheSnakeFood(foodPosition);
+            /*Printer.PrintingTheSnake(snakeElements);
+            Printer.PrintingTheSnakeFood(foodPosition);*/
 
-            Thread.Sleep(sleepTime);
+            sleepTime -= 0.01;
+            Thread.Sleep((int)sleepTime);
         }
     }
 }
