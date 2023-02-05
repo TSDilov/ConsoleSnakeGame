@@ -22,5 +22,15 @@ namespace SnakeMadness
             Console.SetCursorPosition(foodPosition.Col, foodPosition.Row);
             Console.Write("@");
         }
+
+        public static void PrintingGameOver()
+        {
+            Console.WriteLine("Game over!");
+        }
+
+        public static void PrintingTheScore(Queue<Position> snakeElements)
+        {
+            Console.WriteLine($"Your point are: {(snakeElements.Count - 5) * 10}");
+        }
     }
 }

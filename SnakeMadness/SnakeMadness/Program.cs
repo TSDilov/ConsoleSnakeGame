@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 
 internal class Program
 {
+    private const int numberOfStartElements = 5;
     private static void Main(string[] args)
     {
         Console.BufferHeight = Console.WindowHeight;
@@ -11,7 +12,7 @@ internal class Program
         int direction = 0;
         var foodPosition = Helpers.FoodPosition();
 
-        var snakeElements = Helpers.StartUpSnake(5);
+        var snakeElements = Helpers.StartUpSnake(numberOfStartElements);
 
         Printer.PrintingTheSnake(snakeElements);
 
@@ -24,11 +25,15 @@ internal class Program
                 direction = Helpers.DirectionSetting(userInput);
             }
 
-
             var snakeHead = snakeElements.Last();
             var nextDirection = directions[direction];
             var snakeNewHead = new Position(snakeHead.Row + nextDirection.Row,
                 snakeHead.Col + nextDirection.Col);
+            if (Engine.EndOfGame(snakeNewHead, snakeElements))
+            {
+                return;
+            }
+
             snakeElements.Enqueue(snakeNewHead);
             if (snakeNewHead.Col == foodPosition.Col && snakeNewHead.Row == foodPosition.Row)
             {
@@ -41,7 +46,6 @@ internal class Program
 
             Console.Clear();
             Printer.PrintingTheSnake(snakeElements);
-
             Printer.PrintingTheSnakeFood(foodPosition);
 
             Thread.Sleep(100);
