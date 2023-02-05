@@ -6,17 +6,23 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        Console.BufferHeight = Console.WindowHeight;
         var directions = Helpers.Directions();
         int direction = 0;
+        var foodPosition = Helpers.FoodPosition();
+
         var snakeElements = Helpers.StartUpSnake(5);
 
         Printer.PrintingTheSnake(snakeElements);
 
         while (true)
         {
-            var userInput = Console.ReadKey();
-            direction = Helpers.DirectionSetting(userInput);
-
+            Console.CursorVisible = false;
+            if (Console.KeyAvailable)
+            {
+                var userInput = Console.ReadKey();
+                direction = Helpers.DirectionSetting(userInput);
+            }            
 
             var snakeHead = snakeElements.Last();
             snakeElements.Dequeue();
@@ -27,6 +33,8 @@ internal class Program
 
             Console.Clear();
             Printer.PrintingTheSnake(snakeElements);
+            Printer.PrintingTheSnakeFood(foodPosition);
+            Thread.Sleep(100);
         }
     }
 }

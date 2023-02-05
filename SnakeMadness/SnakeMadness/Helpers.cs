@@ -54,5 +54,14 @@ namespace SnakeMadness
 
             return -1;
         }
+
+        public static Position FoodPosition()
+        {
+            var randomNumbersGenerator = new Random();
+            var foodPosition = new Position(randomNumbersGenerator.Next(0, Console.WindowHeight),
+                randomNumbersGenerator.Next(0, Console.WindowWidth));
+
+            return foodPosition;
+        }
     }
 }
