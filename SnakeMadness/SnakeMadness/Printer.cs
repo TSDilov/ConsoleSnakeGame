@@ -39,6 +39,7 @@ namespace SnakeMadness
 
         public static void PrintingGameOver()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Game over!");
         }
 
