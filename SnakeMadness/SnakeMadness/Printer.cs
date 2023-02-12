@@ -25,8 +25,10 @@ namespace SnakeMadness
 
         public static void PrintingTheSnakeFood(Position foodPosition)
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.SetCursorPosition(foodPosition.Col, foodPosition.Row);
             Console.Write("@");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
         }
 
         public static void PrintingEmptyElement(Position lastPosition)

@@ -93,6 +93,7 @@ namespace SnakeMadness
 
         private void DirectionDefinitonOftheHead(Position snakeNewHead)
         {
+            Console.ForegroundColor = ConsoleColor.White;
             if (this.direction == 0)
             {
                 Printer.PrintingSnakeElement(snakeNewHead, ">");
