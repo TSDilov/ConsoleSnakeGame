@@ -51,7 +51,7 @@ namespace SnakeMadness
                 var nextDirection = directions[direction];
                 var snakeNewHead = new Position(snakeHead.Row + nextDirection.Row,
                     snakeHead.Col + nextDirection.Col);
-               
+
                 if (snakeNewHead.Row < 0) snakeNewHead.Row = Console.WindowHeight - 1;
                 if (snakeNewHead.Col < 0) snakeNewHead.Col = Console.WindowWidth - 1;
                 if (snakeNewHead.Row >= Console.WindowWidth) snakeNewHead.Row = 0;
@@ -62,14 +62,16 @@ namespace SnakeMadness
                     return;
                 }
 
+                Printer.PrintingSnakeElement(snakeHead, "*");
                 snakeElements.Enqueue(snakeNewHead);
-                Printer.PrintingTheSnake(snakeElements);
+                DirectionDefinitonOftheHead(snakeNewHead);
+
                 if (snakeNewHead.Col == foodPosition.Col && snakeNewHead.Row == foodPosition.Row)
                 {
                     do
                     {
                         this.foodPosition = Helpers.FoodPosition();
-                    } 
+                    }
                     while (snakeElements.Contains(foodPosition));
 
                     Printer.PrintingTheSnakeFood(foodPosition);
@@ -84,6 +86,26 @@ namespace SnakeMadness
                 Printer.PrintingTheSnakeFood(foodPosition);
                 this.sleepTime -= 0.01;
                 Thread.Sleep((int)this.sleepTime);
+            }
+        }
+
+        private void DirectionDefinitonOftheHead(Position snakeNewHead)
+        {
+            if (this.direction == 0)
+            {
+                Printer.PrintingSnakeElement(snakeNewHead, ">");
+            }
+            else if (this.direction == 1)
+            {
+                Printer.PrintingSnakeElement(snakeNewHead, "<");
+            }
+            else if (this.direction == 3)
+            {
+                Printer.PrintingSnakeElement(snakeNewHead, "^");
+            }
+            else if (this.direction == 2)
+            {
+                Printer.PrintingSnakeElement(snakeNewHead, "v");
             }
         }
     }

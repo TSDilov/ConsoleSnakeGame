@@ -17,6 +17,12 @@ namespace SnakeMadness
             }
         }
 
+        public static void PrintingSnakeElement(Position position, string element)
+        {
+            Console.SetCursorPosition(position.Col, position.Row);
+            Console.Write(element);
+        }
+
         public static void PrintingTheSnakeFood(Position foodPosition)
         {
             Console.SetCursorPosition(foodPosition.Col, foodPosition.Row);
