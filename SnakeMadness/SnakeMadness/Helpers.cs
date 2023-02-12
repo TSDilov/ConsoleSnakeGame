@@ -19,6 +19,14 @@ namespace SnakeMadness
             return snakeElements;
         }
 
+        public static List<Position> GetObstacles()
+        {
+            var obstacles = new List<Position>();
+            ObsticleWalls(obstacles);
+            return obstacles;
+        }
+
+        
         public static Position[] Directions()
         {
             return new Position[]
@@ -67,5 +75,54 @@ namespace SnakeMadness
 
             return foodPosition;
         }
+
+        private static void ObsticleWalls(List<Position> obstacles)
+        {
+            for (int i = 15; i < 52; i++)
+            {
+                obstacles.Add(new Position(8, i));
+            }
+
+            for (int i = 55; i < 63; i++)
+            {
+                obstacles.Add(new Position(8, i));
+            }
+
+            for (int i = 66; i < 105; i++)
+            {
+                obstacles.Add(new Position(8, i));
+            }
+
+            for (int i = 15; i < 58; i++)
+            {
+                obstacles.Add(new Position(20, i));
+            }
+
+            for (int i = 60; i < 105; i++)
+            {
+                obstacles.Add(new Position(20, i));
+            }
+
+            for (int i = 8; i < 14; i++)
+            {
+                obstacles.Add(new Position(i, 14));
+            }
+
+            for (int i = 15; i < 21; i++)
+            {
+                obstacles.Add(new Position(i, 14));
+            }
+
+            for (int i = 8; i < 13; i++)
+            {
+                obstacles.Add(new Position(i, 105));
+            }
+
+            for (int i = 16; i < 21; i++)
+            {
+                obstacles.Add(new Position(i, 105));
+            }
+        }
+
     }
 }

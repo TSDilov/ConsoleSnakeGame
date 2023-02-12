@@ -47,5 +47,15 @@ namespace SnakeMadness
         {
             Console.WriteLine($"Your point are: {(snakeElements.Count - 5) * 10}");
         }
+
+        internal static void PrintingTheObstacles(List<Position> obstacles)
+        {
+            foreach (Position obstacle in obstacles)
+            {
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.SetCursorPosition(obstacle.Col, obstacle.Row);
+                Console.Write("=");
+            }
+        }
     }
 }

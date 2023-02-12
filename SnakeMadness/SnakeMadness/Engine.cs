@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,20 +14,23 @@ namespace SnakeMadness
         private double sleepTime;
         private Position foodPosition;
         private readonly Queue<Position> snakeElements;
+        private readonly List<Position> obstacles;
 
-        public Engine(Position[] directions, ref int direction, ref double sleepTime, ref Position foodPosition, Queue<Position> snakeElements)
+        public Engine(Position[] directions, ref int direction, ref double sleepTime, Queue<Position> snakeElements, List<Position> obstacles)
         {
             this.directions = directions;
             this.direction = direction;
             this.sleepTime = sleepTime;
-            this.foodPosition = foodPosition;
+            this.foodPosition = Helpers.FoodPosition();
             this.snakeElements = snakeElements;
+            this.obstacles = obstacles;
             Printer.PrintingTheSnakeFood(foodPosition);
             Printer.PrintingTheSnake(snakeElements);
+            Printer.PrintingTheObstacles(obstacles);
         }
-        private static bool EndOfGame(Position snakeNewHead, Queue<Position> snakeElements)
+        private static bool EndOfGame(Position snakeNewHead, Queue<Position> snakeElements, List<Position> obstacles)
         {
-            if (snakeElements.Contains(snakeNewHead))
+            if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
             {
                 Console.SetCursorPosition(0, 0);
                 Console.Clear();
@@ -59,7 +63,7 @@ namespace SnakeMadness
                 if (snakeNewHead.Row >= Console.WindowHeight) snakeNewHead.Row = 0;
                 if (snakeNewHead.Col >= Console.WindowWidth) snakeNewHead.Col = 0;
 
-                if (EndOfGame(snakeNewHead, snakeElements))
+                if (EndOfGame(snakeNewHead, this.snakeElements, this.obstacles))
                 {
                     return;
                 }
@@ -74,7 +78,7 @@ namespace SnakeMadness
                     {
                         this.foodPosition = Helpers.FoodPosition();
                     }
-                    while (snakeElements.Contains(foodPosition));
+                    while (this.snakeElements.Contains(foodPosition) || this.obstacles.Contains(foodPosition));
 
                     Printer.PrintingTheSnakeFood(foodPosition);
                     this.sleepTime--;

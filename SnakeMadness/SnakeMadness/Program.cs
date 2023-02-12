@@ -12,9 +12,9 @@ internal class Program
         var directions = Helpers.Directions();
         var direction = 0;
         double sleepTime = 100;
-        var foodPosition = Helpers.FoodPosition();
         var snakeElements = Helpers.StartUpSnake(numberOfStartElements);
-        var gameEngine = new Engine(directions, ref direction, ref sleepTime, ref foodPosition, snakeElements);
+        var obstacles = Helpers.GetObstacles();
+        var gameEngine = new Engine(directions, ref direction, ref sleepTime, snakeElements, obstacles);
         gameEngine.StartGame();
     }
 }
