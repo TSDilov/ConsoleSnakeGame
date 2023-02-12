@@ -14,8 +14,6 @@ internal class Program
         double sleepTime = 100;
         var foodPosition = Helpers.FoodPosition();
         var snakeElements = Helpers.StartUpSnake(numberOfStartElements);
-        Printer.PrintingTheSnakeFood(foodPosition);
-        Printer.PrintingTheSnake(snakeElements);
         var gameEngine = new Engine(directions, ref direction, ref sleepTime, ref foodPosition, snakeElements);
         gameEngine.StartGame();
     }

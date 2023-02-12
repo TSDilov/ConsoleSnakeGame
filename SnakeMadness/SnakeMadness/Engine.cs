@@ -21,6 +21,8 @@ namespace SnakeMadness
             this.sleepTime = sleepTime;
             this.foodPosition = foodPosition;
             this.snakeElements = snakeElements;
+            Printer.PrintingTheSnakeFood(foodPosition);
+            Printer.PrintingTheSnake(snakeElements);
         }
         private static bool EndOfGame(Position snakeNewHead, Queue<Position> snakeElements)
         {
@@ -54,7 +56,7 @@ namespace SnakeMadness
 
                 if (snakeNewHead.Row < 0) snakeNewHead.Row = Console.WindowHeight - 1;
                 if (snakeNewHead.Col < 0) snakeNewHead.Col = Console.WindowWidth - 1;
-                if (snakeNewHead.Row >= Console.WindowWidth) snakeNewHead.Row = 0;
+                if (snakeNewHead.Row >= Console.WindowHeight) snakeNewHead.Row = 0;
                 if (snakeNewHead.Col >= Console.WindowWidth) snakeNewHead.Col = 0;
 
                 if (EndOfGame(snakeNewHead, snakeElements))
