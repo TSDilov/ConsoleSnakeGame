@@ -1,7 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using SnakeMadness;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 
 internal class Program
 {
