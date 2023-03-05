@@ -33,7 +33,7 @@ namespace SnakeMadness
             if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
             {
                 Console.SetCursorPosition(0, 0);
-                //Console.Clear();
+                Console.Clear();
                 Printer.PrintingGameOver();
                 Printer.PrintingTheScore(snakeElements);
                 return true;
